@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: mams-backend
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 8081
+      - key: DB_HOST
+        value: localhost
+      - key: DB_PORT
+        value: 3306
+      - key: DB_NAME
+        value: military_asset_db
+      - key: DB_USERNAME
+        value: root
+      - key: DB_PASSWORD
+        sync: false

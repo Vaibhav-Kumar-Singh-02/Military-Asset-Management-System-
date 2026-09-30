@@ -184,3 +184,36 @@ node test-all-mams.mjs
 8. **Munitions Expenditure**: Verifies live munitions drawdown against closing balances.
 9. **Stock Ledger Integrity**: Asserts category and base breakdowns match database state.
 10. **Audit Trail Immutability**: Confirms event records are persisted with full actor telemetry.
+
+---
+
+## Production Cloud Deployment
+
+### 1. Frontend Deployment on Vercel
+1. Log in to [Vercel](https://vercel.com) and click **Add New Project**.
+2. Import the GitHub repository: `Vaibhav-Kumar-Singh-02/Military-Asset-Management-System-`.
+3. Configure the Project Settings:
+   - **Framework Preset**: `Vite`
+   - **Root Directory**: `./frontend` (or leave default with root `vercel.json`)
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+4. Add Environment Variable:
+   - `VITE_API_URL` = `https://<your-render-backend-url>.onrender.com/api`
+5. Click **Deploy**.
+
+### 2. Backend Deployment on Render
+1. Log in to [Render](https://render.com) and click **New +** → **Web Service**.
+2. Connect your GitHub repository `Vaibhav-Kumar-Singh-02/Military-Asset-Management-System-`.
+3. Configure Service:
+   - **Runtime**: `Docker` (uses `backend/Dockerfile`)
+   - **Region**: Select closest region (e.g., Oregon / Frankfurt / Singapore)
+   - **Plan**: Free
+4. Configure Environment Variables:
+   - `PORT`: `8081`
+   - `DB_HOST`: `<your-mysql-cloud-host>` (e.g. Aiven, TiDB, PlanetScale, Railway)
+   - `DB_PORT`: `3306`
+   - `DB_NAME`: `military_asset_db`
+   - `DB_USERNAME`: `<db-user>`
+   - `DB_PASSWORD`: `<db-password>`
+5. Click **Create Web Service**.
+
